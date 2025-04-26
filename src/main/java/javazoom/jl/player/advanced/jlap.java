@@ -69,19 +69,21 @@ public class jlap {
     }
 
     public static AdvancedPlayer playMp3(InputStream is,
-                                         int start,
-                                         int end,
+                                         final int start,
+                                         final int end,
                                          PlaybackListener listener) throws JavaLayerException {
-        AdvancedPlayer player = new AdvancedPlayer(is);
+        final AdvancedPlayer player = new AdvancedPlayer(is);
         player.setPlayBackListener(listener);
         // run in new thread
-        new Thread(() -> {
-            try {
-                player.play(start, end);
-            } catch (Exception e) {
-                throw new RuntimeException(e.getMessage());
-            }
-        }).start();
+        new Thread(){
+	        public void run(){	
+	            try {
+	                player.play(start, end);
+	            } catch (Exception e) {
+	                throw new RuntimeException(e.getMessage());
+	            }
+	        }
+        }.start();
         return player;
     }
 

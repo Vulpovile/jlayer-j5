@@ -90,8 +90,14 @@ Debug.println(Level.FINE, "volume: " + gain + ", " + hashCode());
 
                 source.start();
             }
-        } catch (RuntimeException | LinkageError | LineUnavailableException ex) {
-ex.printStackTrace(System.err);
+        } catch (LineUnavailableException ex) {
+        	ex.printStackTrace(System.err);
+            t = ex;
+        } catch (LinkageError ex) {
+        	ex.printStackTrace(System.err);
+            t = ex;
+        } catch (RuntimeException ex) {
+        	ex.printStackTrace(System.err);
             t = ex;
         }
         if (source == null) {
@@ -147,7 +153,6 @@ ex.printStackTrace(System.err);
         }
     }
 
-    @Override
     public int getPosition() {
         int pos = 0;
         if (source != null) {

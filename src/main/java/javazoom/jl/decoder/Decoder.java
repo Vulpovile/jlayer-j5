@@ -191,35 +191,37 @@ public class Decoder implements DecoderErrors {
     }
 
     protected FrameDecoder retrieveDecoder(Header header, Bitstream stream, int layer) throws DecoderException {
-        FrameDecoder decoder = switch (layer) {
-            case 3 -> {
+    	//GOOD LORD WHAT THE FUCK
+        FrameDecoder decoder;
+        switch (layer) {
+            case 3:
                 if (l3decoder == null) {
                     l3decoder = new LayerIIIDecoder(stream,
                             header, filter1, filter2,
                             output, OutputChannels.BOTH_CHANNELS);
                 }
-
-                yield l3decoder;
-            }
-            case 2 -> {
+                decoder = l3decoder;
+                break;
+            case 2:	
                 if (l2decoder == null) {
                     l2decoder = new LayerIIDecoder();
                     l2decoder.create(stream,
                             header, filter1, filter2,
                             output, OutputChannels.BOTH_CHANNELS);
                 }
-                yield l2decoder;
-            }
-            case 1 -> {
+                decoder = l2decoder;
+                break;
+            case 1:
                 if (l1decoder == null) {
                     l1decoder = new LayerIDecoder();
                     l1decoder.create(stream,
                             header, filter1, filter2,
                             output, OutputChannels.BOTH_CHANNELS);
                 }
-                yield l1decoder;
-            }
-            default -> null;
+                decoder = l1decoder;
+                break;
+            default:
+            	decoder = null;
 
             // REVIEW: allow channel output selection type
             // (LEFT, RIGHT, BOTH, DOWNMIX)

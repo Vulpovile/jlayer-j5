@@ -1,7 +1,4 @@
-[![Release](https://jitpack.io/v/umjammer/jlayer.svg)](https://jitpack.io/#umjammer/jlayer)
-[![Java CI](https://github.com/umjammer/jlayer/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/jlayer/actions/workflows/maven.yml)
-[![CodeQL](https://github.com/umjammer/jlayer/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/jlayer/actions/workflows/codeql-analysis.yml)
-![Java](https://img.shields.io/badge/Java-17-b07219)
+![Java](https://img.shields.io/badge/J2SE-1.5-b07219)
 [![Parent](https://img.shields.io/badge/Parent-mp3spi-pink)](https://github.com/umjammer/mp3spi)
 
 # JLayer

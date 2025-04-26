@@ -21,6 +21,9 @@
 package javazoom.jl.player;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -53,7 +56,7 @@ public class FactoryRegistry {
         return instance;
     }
 
-    protected final Map<Class<? extends AudioDeviceFactory>, AudioDeviceFactory> factories = new HashMap<>();
+    protected final Map<Class<? extends AudioDeviceFactory>, AudioDeviceFactory> factories = new HashMap<Class<? extends AudioDeviceFactory>, AudioDeviceFactory>();
 
     /**
      * Registers an <code>AudioDeviceFactory</code> instance
@@ -110,7 +113,13 @@ logger.fine("factories order: " + Arrays.toString(getFactoriesPriority()));
      */
     protected AudioDeviceFactory[] getFactoriesPriority() {
         synchronized (factories) {
-            return factories.values().stream().sorted((o1, o2) -> o2.priority() - o1.priority()).toArray(AudioDeviceFactory[]::new);
+        	AudioDeviceFactory[] factoryArray = factories.values().toArray(new AudioDeviceFactory[0]);
+        	Arrays.sort(factoryArray, new Comparator<AudioDeviceFactory>() {
+				public int compare(AudioDeviceFactory o1, AudioDeviceFactory o2) {
+					return o2.priority() - o1.priority();
+				}
+        	});
+        	return factoryArray;
         }
     }
 

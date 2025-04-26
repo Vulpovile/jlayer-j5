@@ -553,12 +553,12 @@ public final class Header {
      * Return Layer version.
      */
     public String layerString() {
-        return switch (hLayer) {
-            case 1 -> "I";
-            case 2 -> "II";
-            case 3 -> "III";
-            default -> null;
-        };
+        switch (hLayer) {
+            case 1: return "I";
+            case 2: return "II";
+            case 3: return "III";
+            default: return null;
+        }
     }
 
     // E.B -> private to public
@@ -671,13 +671,13 @@ public final class Header {
      * Returns Mode.
      */
     public String modeString() {
-        return switch (h_mode) {
-            case STEREO -> "Stereo";
-            case JOINT_STEREO -> "Joint stereo";
-            case DUAL_CHANNEL -> "Dual channel";
-            case SINGLE_CHANNEL -> "Single channel";
-            default -> null;
-        };
+        switch (h_mode) {
+            case STEREO: return "Stereo";
+            case JOINT_STEREO: return "Joint stereo";
+            case DUAL_CHANNEL: return "Dual channel";
+            case SINGLE_CHANNEL: return "Single channel";
+            default: return null;
+        }
     }
 
     /**
@@ -686,13 +686,12 @@ public final class Header {
      * @return MPEG-1 or MPEG-2 LSF or MPEG-2.5 LSF
      */
     public String versionString() {
-        return switch (hVersion) {
-            case MPEG1 -> "MPEG-1";
-            case MPEG2_LSF -> "MPEG-2 LSF";
-            case MPEG25_LSF ->    // SZD
-                    "MPEG-2.5 LSF";
-            default -> null;
-        };
+        switch (hVersion) {
+            case MPEG1: return "MPEG-1";
+            case MPEG2_LSF: return "MPEG-2 LSF";
+            case MPEG25_LSF: return "MPEG-2.5 LSF"; //SZD
+            default: return null;
+        }
     }
 
     /**

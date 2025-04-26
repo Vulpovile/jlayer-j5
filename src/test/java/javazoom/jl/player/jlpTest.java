@@ -67,9 +67,13 @@ class jlpTest {
     void testPlay() throws Exception {
         String[] args = new String[1];
         args[0] = filename;
-        jlp player = jlp.createInstance(args);
+        final jlp player = jlp.createInstance(args);
         player.setAudioDevice(FactoryRegistry.systemRegistry().createAudioDevice(JavaSoundAudioDeviceFactory.class));
-        DelayedWorker.later(3000, player::stop);
+        DelayedWorker.later(3000, new Runnable(){
+        	public void run() {
+        		player.stop();
+        	}
+        });
         player.play();
         assertTrue(true, "Play");
     }
@@ -79,10 +83,14 @@ class jlpTest {
     void testPlay2() throws Exception {
         String[] args = new String[1];
         args[0] = filename;
-        jlp player = jlp.createInstance(args);
+        final jlp player = jlp.createInstance(args);
         // my audio device might have first priority
         ((MyJavaSoundAudioDevice) player.setAudioDevice()).setVolume(volume);
-        DelayedWorker.later(3000, player::stop);
+        DelayedWorker.later(3000, new Runnable(){
+        	public void run() {
+        		player.stop();
+        	}
+        });
         player.play();
         assertTrue(true, "Play");
     }
@@ -92,10 +100,14 @@ class jlpTest {
     void testPlay3() throws Exception {
         String[] args = new String[1];
         args[0] = filename;
-        jlp player = jlp.createInstance(args);
+        final jlp player = jlp.createInstance(args);
         player.setAudioDevice(FactoryRegistry.systemRegistry().createAudioDevice(MyJavaSoundAudioDeviceFactory.class));
         ((MyJavaSoundAudioDevice) player.setAudioDevice()).setVolume(volume);
-        DelayedWorker.later(3000, player::stop);
+        DelayedWorker.later(3000, new Runnable(){
+        	public void run() {
+        		player.stop();
+        	}
+        });
         player.play();
         assertTrue(true, "Play");
     }

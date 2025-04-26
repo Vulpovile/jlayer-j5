@@ -57,7 +57,6 @@ class LayerIDecoder implements FrameDecoder {
         whichChannels = whichCh;
     }
 
-    @Override
     public void decodeFrame() throws DecoderException {
 
         num_subbands = header.numberOfSubbands();

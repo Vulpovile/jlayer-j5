@@ -96,7 +96,11 @@ public class JavaSoundAudioDevice extends AudioDeviceBase {
                 source.start();
 
             }
-        } catch (RuntimeException | LineUnavailableException | LinkageError ex) {
+        } catch (RuntimeException ex) {
+            t = ex;
+        } catch (LineUnavailableException ex) {
+            t = ex;
+        } catch (LinkageError ex) {
             t = ex;
         }
         if (source == null) throw new JavaLayerException("cannot obtain source audio line", t);
@@ -149,7 +153,6 @@ public class JavaSoundAudioDevice extends AudioDeviceBase {
         }
     }
 
-    @Override
     public int getPosition() {
         int pos = 0;
         if (source != null) {

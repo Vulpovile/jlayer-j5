@@ -337,10 +337,17 @@ public final class Bitstream implements BitstreamErrors {
         } catch (IOException ex) {
         }
 
-        boolean sync = switch (read) {
-            case 0 -> true;
-            case 4 -> isSyncMark(headerString, syncmode, syncWord);
-            default -> false;
+        boolean sync;
+        //Again, what the fuck is the point of arrow cases???
+        switch (read) {
+            case 0: 
+            	sync = true; 
+            	break;
+            case 4: 
+            	sync = isSyncMark(headerString, syncmode, syncWord); 
+            	break;
+            default: 
+            	sync = false;
         };
 
         return sync;

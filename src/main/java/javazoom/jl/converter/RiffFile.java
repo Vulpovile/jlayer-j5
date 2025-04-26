@@ -411,18 +411,19 @@ public class RiffFile {
 
     /**
      * Error Messages.
+     * What the fuck is the point of arrow cases???
      */
     private String toDDCRETString(int retcode) {
-        return switch (retcode) {
-            case DDC_SUCCESS -> "DDC_SUCCESS";
-            case DDC_FAILURE -> "DDC_FAILURE";
-            case DDC_OUT_OF_MEMORY -> "DDC_OUT_OF_MEMORY";
-            case DDC_FILE_ERROR -> "DDC_FILE_ERROR";
-            case DDC_INVALID_CALL -> "DDC_INVALID_CALL";
-            case DDC_USER_ABORT -> "DDC_USER_ABORT";
-            case DDC_INVALID_FILE -> "DDC_INVALID_FILE";
-            default -> "Unknown Error";
-        };
+        switch (retcode) {
+            case DDC_SUCCESS: return "DDC_SUCCESS";
+            case DDC_FAILURE: return "DDC_FAILURE";
+            case DDC_OUT_OF_MEMORY: return "DDC_OUT_OF_MEMORY";
+            case DDC_FILE_ERROR: return "DDC_FILE_ERROR";
+            case DDC_INVALID_CALL: return "DDC_INVALID_CALL";
+            case DDC_USER_ABORT: return "DDC_USER_ABORT";
+            case DDC_INVALID_FILE: return "DDC_INVALID_FILE";
+            default: return "Unknown Error";
+        }
     }
 
     /**
