@@ -94,6 +94,13 @@ public class Player {
         }
         audio.open(decoder);
     }
+    
+    public void setVolume(final float volume) {
+        if (this.audio instanceof JavaSoundAudioDevice) {
+            final JavaSoundAudioDevice jsAudio = (JavaSoundAudioDevice)this.audio;
+            jsAudio.setLineGain(volume);
+        }
+    }
 
     public void play() throws JavaLayerException {
         play(Integer.MAX_VALUE);
